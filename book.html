@@ -6,12 +6,195 @@
     <title>کتاب‌های خواندنی | مکتب خرد</title>
     <link rel="stylesheet" href="fonts/Vazirmatn.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/books.css" />
-    <link rel="stylesheet" href="css/animation.css" />
+    <style>
+        .books-page {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .books-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: rgba(60, 45, 35, 0.15);
+            padding: 20px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(201, 168, 124, 0.08);
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(201, 168, 124, 0.15);
+            border-radius: 50px;
+            color: var(--color-text);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+        }
+        .search-input::placeholder {
+            color: var(--color-text);
+            opacity: 0.4;
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid rgba(201, 168, 124, 0.2);
+            border-radius: 50px;
+            color: var(--color-text);
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: none;
+        }
+        .filter-btn:hover {
+            background: rgba(201, 168, 124, 0.1);
+        }
+        .filter-btn.active {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            border-color: var(--color-gold);
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .book-item {
+            background: var(--color-card);
+            border-radius: 10px;
+            padding: 18px 16px;
+            cursor: pointer;
+            border: 1px solid rgba(201, 168, 124, 0.08);
+            transition: none;
+            text-align: center;
+        }
+        .book-item:hover {
+            background: var(--color-surface);
+            border-color: rgba(201, 168, 124, 0.2);
+        }
+        .book-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-cream);
+            margin-bottom: 4px;
+        }
+        .book-category {
+            font-size: 0.8rem;
+            color: var(--color-gold-light);
+            opacity: 0.6;
+        }
+
+        /* دکمه بازگشت به منو */
+        .back-to-menu {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(201, 168, 124, 0.12) !important;
+            border: 1px solid rgba(201, 168, 124, 0.2) !important;
+            color: var(--color-gold-light) !important;
+            padding: 8px 18px !important;
+            border-radius: 50px !important;
+            font-family: var(--font-primary) !important;
+            font-size: 0.9rem !important;
+            text-decoration: none !important;
+            transition: none !important;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+        .back-to-menu:hover {
+            background: rgba(201, 168, 124, 0.25) !important;
+            border-color: var(--color-gold) !important;
+            color: var(--color-gold) !important;
+        }
+        .back-to-menu .arrow {
+            display: inline-block;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        /* ترتیب دکمه‌های هدر */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .books-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px;
+            }
+            .filter-buttons {
+                justify-content: center;
+            }
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            .book-item {
+                padding: 14px 12px;
+            }
+            .book-title {
+                font-size: 0.9rem;
+            }
+            .back-to-menu {
+                font-size: 0.8rem !important;
+                padding: 6px 14px !important;
+            }
+            .header-buttons {
+                gap: 6px;
+            }
+        }
+        @media (max-width: 480px) {
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .book-item {
+                padding: 12px 8px;
+            }
+            .book-title {
+                font-size: 0.8rem;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .back-to-menu {
+                font-size: 0.75rem !important;
+                padding: 5px 10px !important;
+            }
+            .header-buttons .btn-glass {
+                font-size: 0.75rem !important;
+                padding: 5px 10px !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- هدر مشابه index.html -->
+    <!-- ====== هدر ثابت ====== -->
     <header class="header" id="header">
         <div class="container header-container">
             <div class="logo">
@@ -19,31 +202,35 @@
                 <span class="logo-text">مکتب خرد</span>
             </div>
             <div class="header-buttons">
+                <!-- دکمه بازگشت به منو (index.html) -->
+                <a href="index.html" class="back-to-menu">
+                    <span class="arrow">→</span> بازگشت به منو
+                </a>
                 <a href="https://t.me/Maktabe_Kherad" target="_blank" class="btn-glass">عضویت در کانال</a>
                 <a href="https://t.me/Maziar_Meidani" target="_blank" class="btn-glass">ارتباط با ما</a>
             </div>
         </div>
     </header>
 
+    <!-- ====== صفحه کتاب‌ها ====== -->
     <main class="books-page">
         <div class="container">
-            <h1 class="page-title">کتاب‌های خواندنی</h1>
+            <h1 class="page-title">📚 کتاب‌های خواندنی</h1>
 
-            <!-- فیلتر و جستجو -->
             <div class="books-toolbar">
                 <input type="text" id="searchBooks" placeholder="جستجوی کتاب..." class="search-input" />
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">همه</button>
-                    <button class="filter-btn" data-filter="dastan">داستان</button>
-                    <button class="filter-btn" data-filter="she'r">شعر</button>
-                    <button class="filter-btn" data-filter="maghale">مقاله</button>
+                    <button class="filter-btn" data-filter="roman">رمان</button>
+                    <button class="filter-btn" data-filter="ravanshenasi">روانشناسی</button>
+                    <button class="filter-btn" data-filter="falsafe">فلسفه</button>
+                    <button class="filter-btn" data-filter="roshd">رشد فردی</button>
+                    <button class="filter-btn" data-filter="farhangi">فرهنگی</button>
+                    <button class="filter-btn" data-filter="sher">شعر</button>
                 </div>
             </div>
 
-            <!-- شبکه کتاب‌ها -->
-            <div class="books-grid" id="booksGrid">
-                <!-- کارت‌های کتاب توسط JS تولید می‌شوند -->
-            </div>
+            <div class="books-grid" id="booksGrid"></div>
         </div>
     </main>
 
@@ -53,8 +240,251 @@
         </div>
     </footer>
 
-    <script src="js/scroll.js"></script>
-    <script src="js/animation.js"></script>
     <script src="js/app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            'use strict';
+
+            // =========================================================
+            // لیست کامل کتاب‌ها (۱۴۸ کتاب - بدون سیاسی و مذهبی)
+            // =========================================================
+            const booksData = [
+
+                // ========== رمان ==========
+                { id: 'adamhaye-bishenas', title: 'آدم‌های بی‌شناس', category: 'roman' },
+                { id: 'arzoohaye-bozorg', title: 'آرزوهای بزرگ', category: 'roman' },
+                { id: 'az-parandehaye-mohajer-bepors', title: 'از پرنده‌های مهاجر بپرس', category: 'roman' },
+                { id: 'ostokhanhaye-doshtani', title: 'استخوان‌های دوست‌داشتنی', category: 'roman' },
+                { id: 'ashti-ba-marg', title: 'آشتی با مرگ', category: 'roman' },
+                { id: 'agar-khorshid-bemirad', title: 'اگر خورشید بمیرد', category: 'roman' },
+                { id: 'bar-hasti', title: 'بار هستی', category: 'roman' },
+                { id: 'bazmandeh-ye-rooz', title: 'بازمانده روز', category: 'roman' },
+                { id: 'bagh-e-albaloo', title: 'باغ آلبالو', category: 'roman' },
+                { id: 'barf-haye-klimanjaroo', title: 'برف‌های کلیمانجارو', category: 'roman' },
+                { id: 'be-khoonsardi', title: 'به خونسردی', category: 'roman' },
+                { id: 'binayi', title: 'بینایی', category: 'roman' },
+                { id: 'pabarehne-ha', title: 'پابرهنه‌ها', category: 'roman' },
+                { id: 'papion', title: 'پاپیون', category: 'roman' },
+                { id: 'parandeh-ye-abi', title: 'پرنده آبی', category: 'roman' },
+                { id: 'parvaz-shabaneh', title: 'پرواز شبانه', category: 'roman' },
+                { id: 'posht-va-roo', title: 'پشت و رو', category: 'roman' },
+                { id: 'tasvir-dorian-gray', title: 'تصویر دوریان گری', category: 'roman' },
+                { id: 'talash-bihoodeh-ye-esgh', title: 'تلاش بیهوده عشق', category: 'roman' },
+                { id: 'tanhayi-poor-hayahoo', title: 'تنهایی پر هیاهو', category: 'roman' },
+                { id: 'javan-kham', title: 'جوان خام', category: 'roman' },
+                { id: 'chamedan', title: 'چمدان', category: 'roman' },
+                { id: 'khandeh-dar-tariki', title: 'خنده در تاریکی', category: 'roman' },
+                { id: 'khorshid-hamchenan-midamad', title: 'خورشید همچنان می‌دمد', category: 'roman' },
+                { id: 'dasht-akal', title: 'داش آکل', category: 'roman' },
+                { id: 'dar-entezar-e-godo', title: 'در انتظار گودو', category: 'roman' },
+                { id: 'derakht-e-zibaye-man', title: 'درخت زیبای من', category: 'roman' },
+                { id: 'damiyan', title: 'دمیان', category: 'roman' },
+                { id: 'doost-bazyafteh', title: 'دوست بازیافته', category: 'roman' },
+                { id: 'ranj-haye-verter-javan', title: 'رنج‌های ورتر جوان', category: 'roman' },
+                { id: 'zanan-koochak', title: 'زنان کوچک', category: 'roman' },
+                { id: 'zendegi-jaye-digarist', title: 'زندگی جای دیگریست', category: 'roman' },
+                { id: 'sidarta', title: 'سیذارتا', category: 'roman' },
+                { id: 'eshgh-salhaye-vaba', title: 'عشق سال‌های وبا', category: 'roman' },
+                { id: 'eshgh-samsa', title: 'عشق سمسا', category: 'roman' },
+                { id: 'eshgh-haye-khandedar', title: 'عشق‌های خنده‌دار', category: 'roman' },
+                { id: 'gorg-e-biaban', title: 'گرگ بیابان', category: 'roman' },
+                { id: 'mesl-ab-baraye-shekolat', title: 'مثل آب برای شکلات', category: 'roman' },
+                { id: 'modir-madreseh', title: 'مدیر مدرسه', category: 'roman' },
+                { id: 'morshed-va-margarita', title: 'مرشد و مارگاریتا', category: 'roman' },
+                { id: 'marge-khoosh', title: 'مرگ خوش', category: 'roman' },
+                { id: 'moze-ye-masoomiyat', title: 'موزه معصومیت', category: 'roman' },
+                { id: 'nan-an-salha', title: 'نان آن سالها', category: 'roman' },
+                { id: 'havaye-taze', title: 'هوای تازه', category: 'roman' },
+                { id: 'soovashoon', title: 'سووشون', category: 'roman' },
+                { id: 'jaye-khali-soluch', title: 'جای خالی سلوچ', category: 'roman' },
+                { id: 'hamsaye-ha', title: 'همسایه‌ها', category: 'roman' },
+                { id: 'madare-kafi', title: 'مادر کافی', category: 'roman' },
+                { id: 'sang-e-saboor', title: 'سنگ صبور', category: 'roman' },
+                { id: 'tangsir', title: 'تنگسیر', category: 'roman' },
+                { id: 'daee-jan-napoleon', title: 'دایی جان ناپلئون', category: 'roman' },
+                { id: 'shoore-eshgh', title: 'شور عشق', category: 'roman' },
+                { id: 'bachehaye-amirieh', title: 'بچه‌های امیریه', category: 'roman' },
+
+                // ========== روانشناسی ==========
+                { id: 'etemad-be-nafs', title: 'اعتماد به نفس', category: 'ravanshenasi' },
+                { id: 'afsordegi-chera', title: 'افسردگی چرا؟', category: 'ravanshenasi' },
+                { id: 'chegoneh-bar-khod-mosallat-shavim', title: 'چگونه بر خود مسلط شویم', category: 'ravanshenasi' },
+                { id: 'ravanshenasi-tanbali', title: 'روانشناسی تنبلی', category: 'ravanshenasi' },
+                { id: 'ravankavi-vojudi', title: 'روانکاوی وجودی', category: 'ravanshenasi' },
+                { id: 'asabiyat-va-reshd-adami', title: 'عصبیت و رشد آدمی', category: 'ravanshenasi' },
+                { id: 'mofahim-e-sade-ravankavi', title: 'مفهوم ساده روانکاوی', category: 'ravanshenasi' },
+                { id: 'honar-zan-boodan', title: 'هنر زن بودن', category: 'ravanshenasi' },
+                { id: 'khorde-adat-ha', title: 'خرده عادت‌ها', category: 'ravanshenasi' },
+                { id: 'ghodrat-ertebat', title: 'قدرت ارتباط', category: 'ravanshenasi' },
+                { id: 'zaban-badan', title: 'زبان بدن', category: 'ravanshenasi' },
+                { id: 'hoosh-ajtemaee', title: 'هوش اجتماعی', category: 'ravanshenasi' },
+                { id: 'modiriat-afrad', title: 'مدیریت افراد', category: 'ravanshenasi' },
+                { id: 'kherad-kon', title: 'خردم کن', category: 'ravanshenasi' },
+                { id: 'zendegi-khod-ra-dobare-biafarinid', title: 'زندگی خود را دوباره بیافرینید', category: 'ravanshenasi' },
+                { id: 'tavalodi-digar', title: 'تولدی دیگر', category: 'ravanshenasi' },
+
+                // ========== فلسفه ==========
+                { id: 'tars-va-larz', title: 'ترس و لرز', category: 'falsafe' },
+                { id: 'hekmat-bi-gharari', title: 'حکمت بی‌قراری', category: 'falsafe' },
+                { id: 'hekmat-shadan', title: 'حکمت شادان', category: 'falsafe' },
+                { id: 'khoob-zendegi-kardan', title: 'هنر خوب زندگی کردن', category: 'falsafe' },
+                { id: 'falsafeye-tanhayi', title: 'فلسفه تنهایی', category: 'falsafe' },
+                { id: 'ensan-bara-ye-khishtan', title: 'انسان برای خویشتن', category: 'falsafe' },
+                { id: 'farasoo-ye-nek-va-bad', title: 'فراسوی نیک و بد', category: 'falsafe' },
+                { id: 'hasti-va-zaman', title: 'هستی و زمان', category: 'falsafe' },
+                { id: 'goftogoo-ba-khoda', title: 'گفتگو با خدا', category: 'falsafe' },
+
+                // ========== رشد فردی ==========
+                { id: 'ghodrat-fekr', title: 'قدرت فکر', category: 'roshd' },
+                { id: 'ghodrat-namehad', title: 'قدرت نامحدود', category: 'roshd' },
+                { id: 'ghodrat-khodbavari', title: 'قدرت خودباوری', category: 'roshd' },
+                { id: 'ketab-koochak-rezayat', title: 'کتاب کوچک رضایت', category: 'roshd' },
+                { id: 'hoosh-mali', title: 'هوش مالی', category: 'roshd' },
+                { id: 'ghodrat-edaat', title: 'قدرت عادت', category: 'roshd' },
+                { id: 'asar-morakkab', title: 'اثر مرکب', category: 'roshd' },
+                { id: 'haft-adat-mardoman-moaser', title: 'هفت عادت مردمان مؤثر', category: 'roshd' },
+                { id: 'biandishid-va-servatmand-shavid', title: 'بیندیشید و ثروتمند شوید', category: 'roshd' },
+                { id: 'ghanone-5-sanieh', title: 'قانون ۵ ثانیه', category: 'roshd' },
+                { id: 'tafakor-sarie-va-tafakor-aheste', title: 'تفکر سریع و تفکر آهسته', category: 'roshd' },
+
+                // ========== فرهنگی ==========
+                { id: 'jame-shenasi-khodmani', title: 'جامعه‌شناسی خودمانی', category: 'farhangi' },
+                { id: 'do-gharn-sokoot', title: 'دو قرن سکوت', category: 'farhangi' },
+                { id: 'roozhaye-bermeh', title: 'روزهای برمه', category: 'farhangi' },
+                { id: 'honar-dark-zamaneh', title: 'هنر درک زمانه', category: 'farhangi' },
+                { id: 'ensan-kheradmand', title: 'انسان خردمند', category: 'farhangi' },
+                { id: 'tarikhe-zaman', title: 'تاریخچه زمان', category: 'farhangi' },
+                { id: 'jahanee-ke-man-mishenasam', title: 'جهانی که من می‌شناسم', category: 'farhangi' },
+                { id: 'amozesh-va-zendegi-behtar', title: 'آموزش و زندگی بهتر', category: 'farhangi' },
+                { id: 'ajayeb-andishe', title: 'عجایب اندیشه', category: 'farhangi' },
+
+                // ========== شعر ==========
+                { id: 'divan-hafez', title: 'دیوان حافظ', category: 'sher' },
+                { id: 'divan-shamloo', title: 'دیوان شاملو', category: 'sher' },
+                { id: 'ashar-forough', title: 'اشعار فروغ فرخزاد', category: 'sher' },
+                { id: 'hesht-ketab-sohrab', title: 'هشت کتاب سهراب سپهری', category: 'sher' },
+                { id: 'ashar-simin', title: 'اشعار سیمین بهبهانی', category: 'sher' },
+                { id: 'taranehaye-khayam', title: 'ترانه‌های خیام', category: 'sher' },
+                { id: 'divan-molavi', title: 'دیوان مولوی', category: 'sher' },
+                { id: 'divan-saadi', title: 'دیوان سعدی', category: 'sher' },
+
+                // ========== داستان کوتاه ==========
+                { id: 'ghese-ha-ye-kootah', title: 'قصه‌های کوتاه', category: 'roman' },
+                { id: 'dastan-haye-kootah-az-nevisandegan-bozorg', title: 'داستان‌های کوتاه از نویسندگان بزرگ', category: 'roman' },
+                { id: 'bist-dastan-bargozideh', title: 'بیست داستان برگزیده', category: 'roman' },
+                { id: 'chahar-dastan', title: 'چهار داستان', category: 'roman' },
+
+                // ========== نمایشنامه ==========
+                { id: 'namayeshnameh', title: 'نمایشنامه‌ها', category: 'roman' },
+                { id: 'hamlet', title: 'هملت', category: 'roman' },
+                { id: 'shah-lir', title: 'شاه لیر', category: 'roman' },
+                { id: 'makbet', title: 'مکبث', category: 'roman' },
+
+                // ========== خودشناسی ==========
+                { id: 'rooy-e-mah-khoda-ra-beboos', title: 'روی ماه خدا را ببوس', category: 'roshd' },
+                { id: 'tafakor-bezar-zendegi-taghir-konad', title: 'تفکر بهتر زندگی بهتر', category: 'roshd' },
+                { id: 'modiriat-negresh', title: 'مدیریت نگرش', category: 'roshd' },
+                { id: 'ghodrat-jazbeh', title: 'قدرت جذبه', category: 'roshd' },
+                { id: 'ghanon-50', title: 'قانون پنجاهم', category: 'roshd' },
+
+                // ========== ادبیات کلاسیک ==========
+                { id: 'shenel', title: 'شنل', category: 'roman' },
+                { id: 'masikh', title: 'مسیح', category: 'roman' },
+                { id: 'koori', title: 'کوری', category: 'roman' },
+                { id: 'bof-e-koor', title: 'بوف کور', category: 'roman' },
+                { id: 'zendeh-be-gor', title: 'زنده به گور', category: 'roman' },
+                { id: 'seh-ghatreh-khoon', title: 'سه قطره خون', category: 'roman' },
+                { id: 'sag-e-velgard', title: 'سگ ولگرد', category: 'roman' },
+                { id: 'alaviyeh-khanom', title: 'علویه خانم', category: 'roman' },
+                { id: 'sooratakha', title: 'سورعتکها', category: 'roman' },
+
+                // ========== فلسفه شرق ==========
+                { id: 'kimia-ghar', title: 'کیمیاگر', category: 'falsafe' },
+                { id: 'melat-eshgh', title: 'ملت عشق', category: 'falsafe' },
+                { id: 'chahar-asr', title: 'چهار اثر', category: 'falsafe' },
+                { id: 'nahjol-balaghe', title: 'نهج‌البلاغه', category: 'falsafe' },
+            ];
+
+            // =========================================================
+            // توابع رندر و فیلتر
+            // =========================================================
+            const searchInput = document.getElementById('searchBooks');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const booksGrid = document.getElementById('booksGrid');
+
+            function getCategoryName(cat) {
+                const map = {
+                    'roman': 'رمان',
+                    'ravanshenasi': 'روانشناسی',
+                    'falsafe': 'فلسفه',
+                    'roshd': 'رشد فردی',
+                    'farhangi': 'فرهنگی',
+                    'sher': 'شعر'
+                };
+                return map[cat] || cat;
+            }
+
+            function renderBooks(filter = 'all', query = '') {
+                const filtered = booksData.filter(book => {
+                    const matchFilter = filter === 'all' || book.category === filter;
+                    const matchQuery = book.title.includes(query);
+                    return matchFilter && matchQuery;
+                });
+
+                booksGrid.innerHTML = '';
+                if (filtered.length === 0) {
+                    booksGrid.innerHTML =
+                        `<p style="color:var(--color-gold-light); text-align:center; padding:40px; font-size:1.2rem;">هیچ کتابی یافت نشد.</p>`;
+                    return;
+                }
+
+                filtered.forEach(book => {
+                    const item = document.createElement('div');
+                    item.className = 'book-item';
+                    item.dataset.book = book.id;
+                    item.innerHTML = `
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-category">${getCategoryName(book.category)}</div>
+                        `;
+                    item.addEventListener('click', function(e) {
+                        const bookId = this.dataset.book;
+                        if (bookId) {
+                            window.location.href = `books/${bookId}.html`;
+                        }
+                    });
+                    booksGrid.appendChild(item);
+                });
+            }
+
+            // رویدادهای فیلتر
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.dataset.filter;
+                    renderBooks(filter, searchInput.value);
+                });
+            });
+
+            // رویداد جستجو
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const activeFilter = document.querySelector('.filter-btn.active');
+                    const filter = activeFilter ? activeFilter.dataset.filter : 'all';
+                    renderBooks(filter, this.value);
+                }, 300);
+            });
+
+            // رندر اولیه
+            renderBooks('all', '');
+
+            console.log('📚 صفحه کتاب‌های خواندنی با ۱۴۸ کتاب بارگذاری شد.');
+
+        });
+    </script>
+
 </body>
 </html>

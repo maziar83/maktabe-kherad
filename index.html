@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مکتب خرد | کتابخانه دیجیتال</title>
+    <link rel="stylesheet" href="fonts/Vazirmatn.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+</head>
+<body>
+
+    <!-- ====== هدر ثابت ====== -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="مکتب خرد" class="logo-img" />
+                <span class="logo-text">مکتب خرد</span>
+            </div>
+            <div class="header-buttons">
+                <a href="https://t.me/Maktabe_Kherad" target="_blank" class="btn-glass">عضویت در کانال</a>
+                <a href="https://t.me/Maziar_Meidani" target="_blank" class="btn-glass">ارتباط با ما</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== بخش Hero ====== -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="bg-layer bg-paper"></div>
+            <div class="bg-layer bg-warm-light"></div>
+            <div class="bg-layer bg-mist"></div>
+            <canvas id="particles-canvas"></canvas>
+        </div>
+        <div class="hero-content container">
+            <h1 class="hero-title">مکتب خرد</h1>
+            <p class="hero-subtitle">ساخته شده توسط مازیار</p>
+            <div class="hero-scroll-indicator">
+                <span>به پایین اسکرول کنید</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== بخش‌های اصلی ====== -->
+    <main id="main-sections">
+
+        <!-- ===== بخش ۱: صادق هدایت ===== -->
+        <section class="writer-section" data-writer="sadegh">
+            <div class="container writer-container">
+                <div class="writer-image">
+                    <img src="images/writers/sadegh.jpg" alt="صادق هدایت" loading="lazy" />
+                </div>
+                <div class="writer-info">
+                    <h2 class="writer-name">صادق هدایت</h2>
+                    <p class="writer-dates">۱۲۸۱ – ۱۳۳۰</p>
+                    <p class="writer-bio">
+                        صادق هدایت نویسنده، مترجم و روشنفکر ایرانی بود. او را پدر داستان‌نویسی مدرن ایران می‌دانند.
+                        آثار او به دلیل عمق روانشناختی و نگاه تلخ به زندگی شهرت دارند.
+                    </p>
+                    <div class="writer-books">
+                        <h3>کتاب‌های صادق هدایت</h3>
+                        <div class="books-grid">
+                            <div class="book-card" data-book="boof-e-koor">
+                                <img src="images/books/boof-e-koor.jpg" alt="بوف کور" loading="lazy" />
+                                <p class="book-title">بوف کور</p>
+                                <p class="book-year">۱۳۱۵</p>
+                            </div>
+                            <div class="book-card" data-book="sooratakha">
+                                <img src="images/books/sooratakha.jpg" alt="سورعتکها" loading="lazy" />
+                                <p class="book-title">سورعتکها</p>
+                                <p class="book-year">۱۳۲۱</p>
+                            </div>
+                            <!-- کتاب‌های بیشتر صادق هدایت را اینجا اضافه کنید -->
+                        </div>
+                    </div>
+                    <a href="sadegh.html" class="btn-writer-page">ورود به صفحه اختصاصی صادق هدایت</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== بخش ۲: کتاب‌های خواندنی (جایگزین سایر نویسندگان) ===== -->
+        <section class="writer-section" data-writer="bookshelf" style="background: rgba(44,31,24,0.3);">
+            <div class="container">
+                <div class="section-header" style="text-align:center; margin-bottom:50px;">
+                    <h2 class="section-title" style="font-size:2.8rem; color:var(--color-gold);">📚 کتاب‌های خواندنی</h2>
+                    <p style="color:var(--color-gold-light); opacity:0.7; font-size:1.2rem;">
+                        گزیده‌ای از بهترین کتاب‌های ادبیات فارسی
+                    </p>
+                </div>
+                <div class="books-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                    <!-- کتاب‌های متنوع از نویسنده‌های مختلف -->
+                    <div class="book-card" data-book="gharbzadegi">
+                        <img src="images/books/gharbzadegi.jpg" alt="غربزدگی" loading="lazy" />
+                        <p class="book-title">غربزدگی</p>
+                        <p class="book-year">جلال آل احمد - ۱۳۴۱</p>
+                    </div>
+                    <div class="book-card" data-book="tavalodi-digar">
+                        <img src="images/books/tavalodi-digar.jpg" alt="تولدی دیگر" loading="lazy" />
+                        <p class="book-title">تولدی دیگر</p>
+                        <p class="book-year">فروغ فرخزاد - ۱۳۴۲</p>
+                    </div>
+                    <div class="book-card" data-book="havaye-taze">
+                        <img src="images/books/havaye-taze.jpg" alt="هوای تازه" loading="lazy" />
+                        <p class="book-title">هوای تازه</p>
+                        <p class="book-year">احمد شاملو - ۱۳۳۶</p>
+                    </div>
+                    <div class="book-card" data-book="afsaneh">
+                        <img src="images/books/afsaneh.jpg" alt="افسانه" loading="lazy" />
+                        <p class="book-title">افسانه</p>
+                        <p class="book-year">نیما یوشیج - ۱۳۰۱</p>
+                    </div>
+                    <div class="book-card" data-book="setareh">
+                        <img src="images/books/setareh.jpg" alt="ستاره" loading="lazy" />
+                        <p class="book-title">ستاره</p>
+                        <p class="book-year">سیمین بهبهانی - ۱۳۴۱</p>
+                    </div>
+                    <div class="book-card" data-book="chashmhash">
+                        <img src="images/books/chashmhash.jpg" alt="چشم‌هایش" loading="lazy" />
+                        <p class="book-title">چشم‌هایش</p>
+                        <p class="book-year">بزرگ علوی - ۱۳۳۱</p>
+                    </div>
+                    <!-- کتاب‌های بیشتر را می‌توانید اضافه کنید -->
+                </div>
+                <div style="text-align:center; margin-top:40px;">
+                    <a href="book.html" class="btn-writer-page" style="align-self:center;">
+                        مشاهده همه کتاب‌های خواندنی →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== فوتر ====== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; ۱۴۰۵ مکتب خرد - تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <script src="js/scroll.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+/* ==================================================
+   فایل: books.css
+   توضیح: استایل‌های صفحه کتاب‌های خواندنی
+   ================================================== */
+
+.books-page {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* نوار ابزار */
+.books-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    background: rgba(60, 45, 35, 0.15);
+    backdrop-filter: blur(8px);
+    padding: 20px 30px;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(201, 168, 124, 0.08);
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 25px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(201, 168, 124, 0.15);
+    border-radius: 50px;
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 30px rgba(201, 168, 124, 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--color-text);
+    opacity: 0.4;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid rgba(201, 168, 124, 0.2);
+    border-radius: 50px;
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.filter-btn:hover {
+    background: rgba(201, 168, 124, 0.1);
+    border-color: var(--color-gold);
+}
+
+.filter-btn.active {
+    background: var(--color-gold);
+    color: var(--color-bg);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 30px rgba(201, 168, 124, 0.2);
+}
+
+/* شبکه کتاب‌ها (صفحه کتاب‌ها) */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.book-item {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.book-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(201, 168, 124, 0.1);
+    border-color: var(--color-gold);
+}
+
+.book-item img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.book-item:hover img {
+    transform: scale(1.06);
+}
+
+.book-item .book-meta {
+    padding: 18px 20px 22px;
+}
+
+.book-item .book-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-cream);
+    margin-bottom: 4px;
+}
+
+.book-item .book-author {
+    font-size: 0.9rem;
+    color: var(--color-gold-light);
+    opacity: 0.7;
+}
+
+.book-item .book-year {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    opacity: 0.5;
+    margin-top: 6px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .books-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+    .filter-buttons {
+        justify-content: center;
+    }
+    .page-title {
+        font-size: 2.2rem;
+    }
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .book-item .book-meta {
+        padding: 12px;
+    }
+}

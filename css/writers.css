@@ -1,0 +1,218 @@
+/* ==================================================
+   فایل: writers.css
+   توضیح: استایل‌های صفحات اختصاصی نویسندگان
+   ================================================== */
+
+.writer-page {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top, rgba(44, 31, 24, 0.8), var(--color-bg));
+}
+
+.writer-page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 10px 30px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    transition: var(--transition-smooth);
+}
+
+.btn-back:hover {
+    background: rgba(201, 168, 124, 0.15);
+    border-color: var(--color-gold);
+    transform: translateX(-5px);
+}
+
+.writer-profile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    margin-bottom: 60px;
+    background: rgba(60, 45, 35, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-card);
+    padding: 40px;
+    border: 1px solid rgba(201, 168, 124, 0.1);
+}
+
+.writer-portrait img {
+    width: 100%;
+    border-radius: var(--radius-card);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-smooth);
+}
+
+.writer-portrait img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 30px 80px rgba(201, 168, 124, 0.2);
+}
+
+.writer-details h1 {
+    font-size: 3rem;
+    color: var(--color-gold);
+    margin-bottom: 5px;
+}
+
+.writer-details .dates {
+    font-size: 1.1rem;
+    color: var(--color-gold-light);
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.full-bio p {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.works-list {
+    margin-top: 30px;
+}
+
+.works-list h2 {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    margin-bottom: 15px;
+}
+
+.works-list ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 25px;
+}
+
+.works-list ul li {
+    position: relative;
+    padding-right: 20px;
+    color: var(--color-cream);
+    font-size: 1rem;
+}
+
+.works-list ul li::before {
+    content: "•";
+    position: absolute;
+    right: 0;
+    color: var(--color-gold);
+}
+
+/* گالری جلد */
+.book-gallery {
+    margin-top: 60px;
+}
+
+.book-gallery h2 {
+    font-size: 1.8rem;
+    color: var(--color-gold);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(201, 168, 124, 0.1);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 0 20px 50px rgba(201, 168, 124, 0.2);
+    border-color: var(--color-gold);
+}
+
+/* نقل قول‌ها */
+.quotes-section {
+    margin-top: 60px;
+    padding: 40px;
+    background: rgba(60, 45, 35, 0.15);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(201, 168, 124, 0.08);
+}
+
+.quotes-section h2 {
+    font-size: 1.8rem;
+    color: var(--color-gold);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+blockquote {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: var(--color-gold-light);
+    padding: 20px 30px;
+    margin-bottom: 20px;
+    border-right: 4px solid var(--color-gold);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-style: italic;
+    transition: var(--transition-smooth);
+}
+
+blockquote:hover {
+    background: rgba(201, 168, 124, 0.05);
+    border-right-color: var(--color-gold-light);
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+    .writer-profile {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 30px;
+    }
+    .writer-details h1 {
+        font-size: 2.4rem;
+    }
+    .works-list ul {
+        justify-content: center;
+    }
+    .works-list ul li {
+        padding-right: 0;
+    }
+    .works-list ul li::before {
+        display: none;
+    }
+    .quotes-section {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .writer-profile {
+        padding: 20px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    blockquote {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
